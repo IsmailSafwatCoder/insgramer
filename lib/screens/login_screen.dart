@@ -40,6 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: deviceHeight * 0.02),
                 _loginButton(),
                 SizedBox(height: deviceHeight * 0.02),
+                _SingInButtonWithGoogle(),
+                SizedBox(height: deviceHeight * 0.02),
                 _forgotPasswordWidget(),
                 SizedBox(height: deviceHeight * 0.04),
                 _dividerWithOr(),
@@ -116,7 +118,38 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       child: const Text(
         'Log In',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
+    );
+  }
+
+  Widget _SingInButtonWithGoogle() {
+    return ElevatedButton(
+      onPressed: () async {
+        String res = await AuthMethods().signinWithGoogle(context);
+        if (res == 'succeed') {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const Homepage()));
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Signed In With Google successfully")),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(res)),
+          );
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blueAccent,
+        minimumSize: Size(deviceWidth * 0.88, deviceHeight * 0.06),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: const Text(
+        'SingIn With Google',
+        style: TextStyle(color: Colors.white, fontSize: 18),
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:instagramer/providers/save_provider.dart';
 import 'package:instagramer/providers/test_provider.dart';
 import 'package:instagramer/screens/login_screen.dart';
 import 'package:instagramer/screens/homepage.dart';
+import 'package:instagramer/screens/signout.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -52,14 +53,15 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const AuthStateHandler(),
-      ),
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const SignoutPage()
+          // const AuthStateHandler(),
+          ),
     );
   }
 }

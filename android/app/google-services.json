@@ -12,7 +12,20 @@
           "package_name": "com.example.instagramer"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "671804537123-fj0dsrfg81v8bgh3i61jb9bvt9c3kfh9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.instagramer",
+            "certificate_hash": "b411885cc32e671da608590f3168e6c1a898a394"
+          }
+        },
+        {
+          "client_id": "671804537123-7nhgataldekl7832koig4bqtn4if1tir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDrmeIb-M0S654WVL5aFkoYk54eFgSd9Oc"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671804537123-7nhgataldekl7832koig4bqtn4if1tir.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "671804537123-9lb4d04bsc72fh4u37k1ojm9paaru6ac.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.instagramer"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +56,20 @@
           "package_name": "com.isntagramer.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "671804537123-shqlmf9uume9igcuquiuln0dse4gfehl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isntagramer.app",
+            "certificate_hash": "b411885cc32e671da608590f3168e6c1a898a394"
+          }
+        },
+        {
+          "client_id": "671804537123-7nhgataldekl7832koig4bqtn4if1tir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDrmeIb-M0S654WVL5aFkoYk54eFgSd9Oc"
@@ -39,7 +77,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671804537123-7nhgataldekl7832koig4bqtn4if1tir.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "671804537123-9lb4d04bsc72fh4u37k1ojm9paaru6ac.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.instagramer"
+              }
+            }
+          ]
         }
       }
     }
