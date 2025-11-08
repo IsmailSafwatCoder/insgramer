@@ -31,7 +31,7 @@ class _HomepageState extends State<Homepage> {
     try {
       // ignore: await_only_futures
       final user = await Provider.of<userdataprovider>(context, listen: false)
-          .providertest();
+          .userdata();
 
       setState(() {
         userData = user as Map<String, dynamic>;
@@ -65,39 +65,42 @@ class _HomepageState extends State<Homepage> {
       );
     }
     photo = userData!['photoUrl'];
-    return Scaffold(
-      body: pages[currentpage],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentpage,
-        onTap: (value) {
-          currentpage = value;
-          setState(() {});
-        },
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black54,
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: '',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.add_box_outlined),
-            label: '',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: buttomUserPhoto(photo),
-            label: '',
-          ),
-        ],
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        body: pages[currentpage],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: currentpage,
+          onTap: (value) {
+            currentpage = value;
+            setState(() {});
+          },
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.black54,
+          items: [
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: '',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.add_box_outlined),
+              label: '',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.bookmark),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: buttomUserPhoto(photo),
+              label: '',
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -107,5 +110,28 @@ class _HomepageState extends State<Homepage> {
       radius: 12,
       backgroundImage: NetworkImage(photo),
     );
+  }
+
+  Future<bool> _onWillPop() async {
+    // Show a confirmation dialog or perform other actions
+    // Returning true will close the app, false will prevent it
+    bool shouldExit = await showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Confirm Exit'),
+        content: const Text('Are you sure you want to exit the app?'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Cancel'),
+            onPressed: () => Navigator.of(context).pop(false),
+          ),
+          TextButton(
+            child: const Text('Exit'),
+            onPressed: () => Navigator.of(context).pop(true),
+          ),
+        ],
+      ),
+    );
+    return shouldExit;
   }
 }

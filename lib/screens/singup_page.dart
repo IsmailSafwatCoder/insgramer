@@ -163,7 +163,7 @@ class _SingUpPageState extends State<SingUpPage> {
         GestureDetector(
           onTap: () {
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const SingUpPage()));
+                MaterialPageRoute(builder: (context) => const LoginScreen()));
           },
           child: const Text(
             'Login',

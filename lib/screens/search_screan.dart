@@ -58,10 +58,9 @@ class _SearchScreanState extends State<SearchScrean> {
                       var user = snapshot.data!.docs[index];
                       return InkWell(
                         onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ProfileScrean(uid: user['uid'])));
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  ProfileScrean(uid: user['uid'])));
                         },
                         child: ListTile(
                           leading: CircleAvatar(

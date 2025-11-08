@@ -19,7 +19,7 @@ class _CommentScreanState extends State<CommentScrean> {
     try {
       // ignore: await_only_futures
       final user = await Provider.of<userdataprovider>(context, listen: false)
-          .providertest();
+          .userdata();
 
       setState(() {
         userData = user as Map<String, dynamic>;

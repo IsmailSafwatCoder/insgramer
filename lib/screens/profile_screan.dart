@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagramer/resources/firestore_methods.dart';
+import 'package:instagramer/screens/homepage.dart';
 
 import '../resources/storage_methods.dart';
 
@@ -78,6 +79,15 @@ class _ProfileScreanState extends State<ProfileScrean> {
   @override
   void initState() {
     super.initState();
+
+    // Clear user data before loading new data
+    userinformation = null;
+    isloadinguserinformation = false;
+    numberofposts = 0;
+    isfollowed = false;
+    followers.clear();
+    following.clear();
+
     loaduserdata();
   }
 
@@ -85,7 +95,8 @@ class _ProfileScreanState extends State<ProfileScrean> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('username'),
+        title:
+            userinformation == null ? null : Text(userinformation['username']),
       ),
       body: userinformation == null
           ? const Center(
@@ -100,7 +111,9 @@ class _ProfileScreanState extends State<ProfileScrean> {
                       CircleAvatar(
                         radius: 40,
                         backgroundImage: NetworkImage(isloadinguserinformation
-                            ? userinformation['photoUrl']
+                            ? isloading
+                                ? 'https://media.wired.com/photos/592722c1af95806129f51b71/master/pass/MIT-Web-Loading.jpg'
+                                : userinformation['photoUrl']
                             : 'https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp'),
                       ),
                       Expanded(
@@ -121,11 +134,19 @@ class _ProfileScreanState extends State<ProfileScrean> {
                                 ? ElevatedButton(
                                     onPressed: () async {
                                       await _pickImage();
+                                      isloading = true;
                                       FirestoreMethods().updateimage(imageurl);
                                       await loaduserdata();
-                                      setState(() {});
+                                      setState(() {
+                                        isloading = false;
+                                      });
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Homepage()));
                                     },
-                                    child: const Text('change image'))
+                                    child: const Text('change image'),
+                                  )
                                 : isfollowed
                                     ? ElevatedButton(
                                         onPressed: () async {

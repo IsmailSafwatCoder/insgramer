@@ -3,6 +3,7 @@ import 'package:instagramer/custom/customfornfiled.dart';
 import 'package:instagramer/resources/auth_methods.dart';
 import 'package:instagramer/screens/homepage.dart';
 import 'package:instagramer/screens/singup_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isloading = false;
   late double deviceHeight;
   late double deviceWidth;
   final TextEditingController emailController = TextEditingController();

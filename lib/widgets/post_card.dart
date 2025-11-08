@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagramer/resources/firestore_methods.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +51,7 @@ class _PostCardState extends State<PostCard> {
     String userphoto = widget.snap['userphoto'];
     List<dynamic> likes = widget.snap['likes'];
     String postid = widget.snap['postid'];
-    bool isliked = likes.contains(uid);
+    bool isliked = likes.contains(FirebaseAuth.instance.currentUser!.uid);
     bool saved = widget.snap['saved'];
 
     return SizedBox(
@@ -79,8 +80,10 @@ class _PostCardState extends State<PostCard> {
                   )
                 ],
                 onSelected: (value) async {
-                  if (value == 'delete') {
-                    await FirestoreMethods().deletepost(postid);
+                  if (uid == FirebaseAuth.instance.currentUser!.uid) {
+                    if (value == 'delete') {
+                      await FirestoreMethods().deletepost(postid);
+                    }
                   }
                 },
               )
@@ -126,7 +129,8 @@ class _PostCardState extends State<PostCard> {
                 isliked ? Icons.favorite : Icons.favorite_border,
                 () async {
                   await Provider.of<LikeProvider>(context, listen: false)
-                      .likepost(uid, postid, likes);
+                      .likepost(FirebaseAuth.instance.currentUser!.uid, postid,
+                          likes);
                 },
               ),
               colum(commentlength, Icons.flutter_dash, () {

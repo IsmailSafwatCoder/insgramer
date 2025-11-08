@@ -48,7 +48,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
-    var user = Provider.of<userdataprovider>(context).providertest();
+    var user = Provider.of<userdataprovider>(context).userdata();
     return Scaffold(
       body: FutureBuilder(
         future: user,
@@ -89,7 +89,6 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       ),
                       Expanded(
                           child: TextField(
-                        autofocus: true,
                         controller: _captionController,
                         decoration: InputDecoration(
                             hintText: 'caption',

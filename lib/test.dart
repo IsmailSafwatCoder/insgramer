@@ -12,7 +12,7 @@ class testpage extends StatefulWidget {
 class _testpageState extends State<testpage> {
   @override
   Widget build(BuildContext context) {
-    var user = Provider.of<userdataprovider>(context).providertest();
+    var user = Provider.of<userdataprovider>(context).userdata();
 
     return Scaffold(
       body: Center(

@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:instagramer/providers/test_provider.dart';
 import 'package:instagramer/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/post_card.dart';
 
@@ -31,7 +33,8 @@ class _FeedPageScreanState extends State<FeedPageScrean> {
           actions: [
             IconButton(
               onPressed: () async {
-                await FirebaseAuth.instance.signOut();
+                await Provider.of<userdataprovider>(context, listen: false)
+                    .signOut();
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const LoginScreen()));
               },

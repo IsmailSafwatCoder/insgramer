@@ -97,6 +97,11 @@ class FirestoreMethods {
 
   Future updateimage(String imageurl) async {
     var uid = FirebaseAuth.instance.currentUser!.uid;
+    QuerySnapshot doc = await _firebaseFirestore
+        .collection('posts')
+        .where('uid', isEqualTo: uid)
+        .get();
+
     if (imageurl == '') {
       return null;
     } else {
@@ -104,6 +109,16 @@ class FirestoreMethods {
           .collection('users')
           .doc(uid)
           .update({'photoUrl': imageurl});
+      QuerySnapshot doc = await _firebaseFirestore
+          .collection('posts')
+          .where('uid', isEqualTo: uid)
+          .get();
+      for (var i in doc.docs) {
+        await _firebaseFirestore
+            .collection('posts')
+            .doc(i.id)
+            .update({"userphoto": imageurl});
+      }
     }
   }
 }
